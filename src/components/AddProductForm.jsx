@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { useFormHook } from "../hooks/useFormHook";
+import { useStoreHook } from "../hooks/useStoreHook";
 
 export const AddProductForm = () => {
-  const [first, setfirst] = useState({
+  const { addProducts } = useStoreHook();
+
+  const { values, handleChange, resetForm } = useFormHook({
     productName: "",
     description: "",
     color: "",
@@ -9,19 +13,19 @@ export const AddProductForm = () => {
     imageUrl: "",
   });
 
-  console.log(first);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setfirst({
-      ...first,
-      [name]: value,
-    });
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    addProducts(values);
+    resetForm();
   };
 
   return (
     <div className="mt-4 p-4">
-      <form className="w-1/2 flex flex-col gap-[1rem]" action="">
+      <form
+        onSubmit={handleFormSubmit}
+        className="w-1/2 flex flex-col gap-[1rem]"
+        action=""
+      >
         <div className="flex flex-col gap-[0.5rem]">
           <label className="text-xl" htmlFor="productName">
             Product Name
@@ -33,6 +37,7 @@ export const AddProductForm = () => {
             id="productName"
             onChange={handleChange}
             name="productName"
+            value={values.productName}
           />
         </div>
         <div className="flex flex-col gap-[0.5rem]">
@@ -46,6 +51,7 @@ export const AddProductForm = () => {
             id="description"
             onChange={handleChange}
             name="description"
+            value={values.description}
           />
         </div>
         <div className="flex flex-col gap-[0.5rem]">
@@ -59,6 +65,7 @@ export const AddProductForm = () => {
             id="color"
             onChange={handleChange}
             name="color"
+            value={values.color}
           />
         </div>
         <div className="flex flex-col gap-[0.5rem]">
@@ -72,6 +79,7 @@ export const AddProductForm = () => {
             id="price"
             onChange={handleChange}
             name="price"
+            value={values.price}
           />
         </div>
 
@@ -86,6 +94,7 @@ export const AddProductForm = () => {
             id="image"
             name="imageUrl"
             onChange={handleChange}
+            value={values.imageUrl}
           />
         </div>
 
