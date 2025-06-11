@@ -9,7 +9,7 @@ export const Router = () => {
     <div>
       <Routes>
         <Route path="/" element={<HomeScreen />} />
-        <Route path="/product/detail" element={<ProductDetailScreen />} />
+        <Route path="/detail/:id" element={<ProductDetailScreen />} />
         <Route path="/addProducts" element={<AddProductScreen />} />
       </Routes>
     </div>

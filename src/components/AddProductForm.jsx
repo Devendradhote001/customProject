@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useFormHook } from "../hooks/useFormHook";
 import { useStoreHook } from "../hooks/useStoreHook";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 export const AddProductForm = () => {
+  const navigate = useNavigate();
   const { addProducts } = useStoreHook();
 
   const { values, handleChange, resetForm } = useFormHook({
@@ -16,6 +19,8 @@ export const AddProductForm = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     addProducts(values);
+    toast.success("Product added successfully");
+    navigate('/')
     resetForm();
   };
 

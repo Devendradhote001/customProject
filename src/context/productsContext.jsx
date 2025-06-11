@@ -5,6 +5,7 @@ export const MyProductContext = createContext();
 export const ContextProvider = ({ children }) => {
   const [products, setProducts] = useState([
     {
+      id:345674567567,
       productName: "Motorola",
       description: "Smartphone",
       color: "green",
