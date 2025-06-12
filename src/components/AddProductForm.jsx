@@ -14,13 +14,14 @@ export const AddProductForm = () => {
     color: "",
     price: 0,
     imageUrl: "",
+    brand: "",
   });
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     addProducts(values);
     toast.success("Product added successfully");
-    navigate('/')
+    navigate("/");
     resetForm();
   };
 
@@ -100,6 +101,21 @@ export const AddProductForm = () => {
             name="imageUrl"
             onChange={handleChange}
             value={values.imageUrl}
+          />
+        </div>
+
+        <div className="flex flex-col gap-[0.5rem]">
+          <label className="text-xl" htmlFor="brand">
+            Brand
+          </label>
+          <input
+            className="p-3 border"
+            type="text"
+            placeholder="Brand Name"
+            id="brand"
+            name="brand"
+            onChange={handleChange}
+            value={values.brand}
           />
         </div>
 

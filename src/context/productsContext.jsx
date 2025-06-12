@@ -1,19 +1,11 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const MyProductContext = createContext();
 
 export const ContextProvider = ({ children }) => {
-  const [products, setProducts] = useState([
-    {
-      id:345674567567,
-      productName: "Motorola",
-      description: "Smartphone",
-      color: "green",
-      price: 15000,
-      imageUrl:
-        "https://suprememobiles.in/cdn/shop/files/MotorolaG45-5GAndroid14.webp?v=1738747609",
-    },
-  ]);
+  const [products, setProducts] = useState(
+    () => JSON.parse(localStorage.getItem("pro")) || []
+  );
 
   const addProducts = (data) => {
     let productObj = {
@@ -24,8 +16,12 @@ export const ContextProvider = ({ children }) => {
     setProducts([...products, productObj]);
   };
 
+  useEffect(() => {
+    localStorage.setItem("pro", JSON.stringify(products));
+  }, [products]);
+
   return (
-    <MyProductContext.Provider value={{ products, addProducts }}>
+    <MyProductContext.Provider value={{ products, addProducts, setProducts }}>
       {children}
     </MyProductContext.Provider>
   );
