@@ -18,7 +18,7 @@ export const HomeScreen = () => {
     return products.filter(
       (val) => val.brand.toLowerCase() === filteredvalue.toLowerCase()
     );
-  }, [filteredvalue]);
+  }, [filteredvalue, products]);
 
   const handleDelete = (id) => {
     let filteredProduct = products.filter((val) => val.id !== id);
@@ -50,7 +50,7 @@ export const HomeScreen = () => {
         </select>
       </div>
 
-      <div className="p-5 flex flex-wrap gap-5">
+      <div className="p-5 flex flex-wrap gap-10">
         {filteredProduct.map((val) => (
           <div key={val.id} className="flex flex-col gap-4 w-[200px]">
             <div key={val.id} onClick={() => navigate(`/detail/${val.id}`)}>

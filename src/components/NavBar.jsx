@@ -16,14 +16,6 @@ export const NavBar = () => {
         style={({ isActive }) => ({
           color: isActive ? "red" : "white",
         })}
-        to="/product/detail"
-      >
-        Product Detail
-      </NavLink>
-      <NavLink
-        style={({ isActive }) => ({
-          color: isActive ? "red" : "white",
-        })}
         to="/addProducts"
       >
         Add Products
